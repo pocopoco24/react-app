@@ -39,9 +39,51 @@ const appApple = () => {
 // class componentは、Componentをimportする必要がある
 class App extends Component {
   render() {
-    return (<div> orange </div >)
+    return (<div>
+      <AppProps>
+      </AppProps>
+    </div >)
   }
 
+}
+
+// componentの属性のことをpropsと呼ぶ
+const AppProps = () => {
+  const profiles = [
+    {
+      name: 'osanai', age: 24,
+    },
+    {
+      name: 'machida', age: 25
+    },
+    {
+      name: 'noname'
+    }
+  ]
+
+  return (
+    <div>
+      {
+        profiles.map((profiles, index) => {
+          return <User name={profiles.name} age={profiles.age} key={index} />
+        })
+      }
+    </div>
+  )
+}
+
+
+
+const User = (props) => {
+  return (
+    <div>
+      Hi, Iam {props.name}. {props.age} old.
+    </div>
+  )
+}
+
+User.defaultProps = {
+  age: 100
 }
 
 export default App;
