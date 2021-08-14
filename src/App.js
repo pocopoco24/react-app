@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // inputタグのラベルとして作用する
 // 例えばチェックボックスのID値をラベルのforに設定することでラベルで指定した文字をクリックしてもチェックできる
@@ -51,10 +52,10 @@ class App extends Component {
 const AppProps = () => {
   const profiles = [
     {
-      name: 'osanai', age: 24,
+      name: 'osanai', age: 24
     },
     {
-      name: 'machida', age: 25
+      name: 'machida', age: 'aaa'
     },
     {
       name: 'noname'
@@ -84,6 +85,13 @@ const User = (props) => {
 
 User.defaultProps = {
   age: 100
+}
+
+// propsに対する型チェック
+User.propTypes = {
+
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired
 }
 
 export default App;
