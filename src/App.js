@@ -24,6 +24,8 @@ class Counter extends Component {
   }
 
   //  +1する関数
+  // 直接stateおいじるのではなくsetStateを使う→render()が実行される
+  // 状態を変えるときはsetState
   handlePlusButton = () => {
     const currentCount = this.state.count
     this.setState({ count: currentCount + 1 })
@@ -46,5 +48,7 @@ class Counter extends Component {
     )
   }
 }
+
+// ここまではReactで状態管理・コンポーネント間の値の受け渡しpropsを学んだ
 
 export default App;
