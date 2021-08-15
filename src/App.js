@@ -51,4 +51,6 @@ class Counter extends Component {
 
 // ここまではReactで状態管理・コンポーネント間の値の受け渡しpropsを学んだ
 
+
+
 export default App;
