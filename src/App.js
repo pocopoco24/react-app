@@ -1,97 +1,50 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-// inputタグのラベルとして作用する
-// 例えばチェックボックスのID値をラベルのforに設定することでラベルで指定した文字をクリックしてもチェックできる
+// propsは親のコンポーネントから渡される、stateはコンポーネント内部でのみ使用
+// propsは変更不可、stateは変更可能
 
-// JSXはそのままでは実行できないので、トランスパイリングでJavascriptに変更していた
-// それが、babel
-
-// webpackが複数のjsファイルをbandleする
-
-// functional component 
-// class component 
-
-function AppFunc() {
+// {}省略するとreturnいらない
+const App = () => {
   return (
-
-    <React.Fragment>
-      <h1>
-        hello!React!
-      </h1>
-
-      <label htmlFor="bar">bar</label>
-
-      <input type="text" onClick={() => { console.log('i clicled button') }} />
-      <button text="button" onClick={() => { console.log('i clicled button') }}>
-        chiken
-      </button>
-
-    </React.Fragment>
-  );
+    <Counter></Counter>
+  )
 }
 
+class Counter extends Component {
+  // constructerはclassを初期化する値を入れる
+  constructor(props) {
 
-// functional component
-const appApple = () => {
-  return <div>apple</div>;
-};
+    // 継承元（component）のclassのコンストラクタを呼び出す
+    super(props)
 
-// class componentは、Componentをimportする必要がある
-class App extends Component {
-  render() {
-    return (<div>
-      <AppProps>
-      </AppProps>
-    </div >)
+    // Counterクラスのstate
+    console.log(this.state)
+
+    this.state = { count: 0 }
   }
 
-}
+  //  +1する関数
+  handlePlusButton = () => {
+    const currentCount = this.state.count
+    this.setState({ count: currentCount + 1 })
+  }
 
-// componentの属性のことをpropsと呼ぶ
-const AppProps = () => {
-  const profiles = [
-    {
-      name: 'osanai', age: 24
-    },
-    {
-      name: 'machida', age: 'aaa'
-    },
-    {
-      name: 'noname'
-    }
-  ]
-
-  return (
-    <div>
-      {
-        profiles.map((profiles, index) => {
-          return <User name={profiles.name} age={profiles.age} key={index} />
-        })
-      }
-    </div>
-  )
-}
+  handleMinusButton = () => {
+    const currentCount = this.state.count
+    this.setState({ count: currentCount - 1 })
+  }
 
 
-
-const User = (props) => {
-  return (
-    <div>
-      Hi, Iam {props.name}. {props.age} old.
-    </div>
-  )
-}
-
-User.defaultProps = {
-  age: 100
-}
-
-// propsに対する型チェック
-User.propTypes = {
-
-  name: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired
+  render() {
+    console.log(this.state)
+    return (
+      <React.Fragment>
+        <div>count:{this.state.count}</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </React.Fragment>
+    )
+  }
 }
 
 export default App;
