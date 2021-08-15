@@ -5,3 +5,5 @@ export const DECREMENT = 'DECREMENT'
 // 適切な状態遷移のための
 export const increment = ()=>({type: INCREMENT})
 export const decrement = ()=>({type: DECREMENT})
+
+// state（状態）をどう変化させるかreducer
